@@ -1,4 +1,5 @@
-## The JavaScript Engine and Runtime
+# How JavaScript Works Behind the Scenes
+## I.The JavaScript Engine and Runtime
 ### 1. JavaScript engine hoạt động như thế nào
  - ***JavaScript engine đơn giản là một chương trình máy tính thực thi Code JS từ dạng có thể đọc được của con người thành hướng dẫn mà phần cứng máy tính có thể hiểu và thực thi.***
  - ***Trình duyệt dựa vào v8 Engine (JavaScript engine), còn khi bạn chạy code ở local thì phần cần đến môi trường Node.js***
@@ -68,7 +69,7 @@
    
 ***[Xem thêm video để hiểu rõ hơn cách chúng thực thi](https://www.youtube.com/watch?v=eiC58R16hb8)***
 
-
+## II.Scope and The Scope Chain
 
 
 
