@@ -66,7 +66,7 @@
  - ```Microtask Queue``` chứa các callback từ các tác vụ như ```Promise, Async Awai, observable```.
  - Nó ưu tiên hơn ``Callback`` Queue nên thực thi ngay sau ```call task``` trống.
    
-****[Xem thêm video để hiểu rõ hơn cách chúng thực thi](https://www.youtube.com/watch?v=eiC58R16hb8)***
+***[Xem thêm video để hiểu rõ hơn cách chúng thực thi](https://www.youtube.com/watch?v=eiC58R16hb8)***
 
 
 
