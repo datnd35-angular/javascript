@@ -292,5 +292,5 @@ new x(1,2,3);
 
 ## Primitives và Objects (Kiểu nguyên thuỷ và Kiểu tham chiếu)
 
-- ```Primitives```: Number, String, Boolean, Undefined, Null, Symbol, BigInt
-- ```Objects```: Objects, Array, Functions 
+- ***Primitives***:  ```Number```, ```String```, ```Boolean```, ```Undefined```, ```Null```, ```Symbol```, ```BigInt```
+- ***Objects***: ```Objects```, ```Array```, ```Functions``` 
