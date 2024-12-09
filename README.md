@@ -210,5 +210,87 @@ class MyClass {
     }
 }
 ```
+## Regular Functions và Arrow Functions
+- ```Arrow Functions``` - một tính năng mới được giới thiệu trong ```ES6```
+- Nếu bạn muốn viết code ngắn gọn hoặc làm việc với các phương thức xử lý mảng, thì ```Arrow functions``` sẽ là lựa chọn tốt hơn.
 
+***1. Syntax***
+- Syntax của một fuction bình thuờng:
+```
+let x = function function_name(parameters){ 
+   // body of the function 
+}; 
+```
 
+- Syntax của arrow functions:
+```
+let x = (parameters) => { 
+    // body of the function 
+}; 
+
+```
+
+***2. Từ khóa this***
+```
+let user = { 
+    name: "GFG", 
+    gfg1:() => { 
+        console.log(this.name)
+        console.log("hello " + this.name); // no 'this' binding here 
+    }, 
+    gfg2(){        
+        console.log("Welcome to " + this.name); // 'this' binding works here 
+    }   
+ }; 
+user.gfg1(); 
+user.gfg2(); 
+```
+![image](https://github.com/user-attachments/assets/471dfd56-471c-4583-bd87-80fe09f94808)
+
+***3. Arguments***
+- ```Regular functions```
+```
+let user = {       
+    show(){ 
+        console.log(arguments); 
+    } 
+}; 
+user.show(1, 2, 3); 
+```
+![image](https://github.com/user-attachments/assets/2847bac0-259e-492c-9a84-b4b03e576197)
+
+- ```Arrow function```
+
+```
+let user = {      
+        show_ar : () => { 
+        console.log(...arguments); 
+    } 
+}; 
+user.show_ar(1, 2, 3); 
+```
+![image](https://github.com/user-attachments/assets/7af215e0-e964-4b5e-84de-d6dfbd2da61d)
+
+***4. Từ khóa new***
+- ```Regular Function```
+```
+let x = function(){ 
+    console.log(arguments); 
+}; 
+new x(1,2,3); 
+```
+![image](https://github.com/user-attachments/assets/04b44142-3202-4ad9-a61d-52f2e38a4f71)
+
+- ```Arrow Function```
+```
+let x = ()=> { 
+    console.log(arguments); 
+}; 
+new x(1,2,3); 
+```
+![image](https://github.com/user-attachments/assets/cdbe322e-61bd-47cd-838c-c6a6f382f0c8)
+
+## Primitives và Objects (Kiểu nguyên thuỷ và Kiểu tham chiếu)
+
+- ```Primitives```: Number, String, Boolean, Undefined, Null, Symbol, BigInt
+- ```Objects```: Objects, Array, Functions 
