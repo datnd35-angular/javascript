@@ -294,3 +294,80 @@ new x(1,2,3);
 
 - ***Primitives***:  ```Number```, ```String```, ```Boolean```, ```Undefined```, ```Null```, ```Symbol```, ```BigInt```
 - ***Objects***: ```Objects```, ```Array```, ```Functions``` 
+
+## Toán tử(Operators) và chuỗi(String) 
+
+***1. Destructuring Arrays***
+- tính năng cho phép ***lấy các phần tử từ một mảng và gán chúng trực tiếp vào các biến riêng biệt.*** Thay vì sử dụng cú pháp truyền thống để chỉ ra chỉ số của từng phần tử trong mảng.
+```
+const [a, b, c, d] = numbers;
+```
+
+```
+Có thể sử dụng default values để tránh lỗi undefined
+
+const [first, second = 'default', third = 'default'] = [1, 2]; // third sẽ có giá trị là 'default'
+```
+
+***2. Destructuring Objects***
+- ***Tính năng cho phép bạn lấy các thuộc tính từ một đối tượng và gán chúng trực tiếp vào các biến riêng biệt.***
+```
+const person = {
+  name: 'John Doe',
+  age: 30,
+  location: 'New York'
+};
+
+const { name, age, location } = person;
+
+
+const { name, age = 25, job = 'unemployed' } = person;
+```
+***3. Rest Pattern***
+- ***Pattern rest trông giống hệt như operator spread. Cả hai đều có cú pháp giống nhau với ba dấu chấm nhưng thực hiện công việc ngược lại.***
+ - ```Operator spread``` dùng để mở rộng một mảng hoặc truyền nhiều giá trị vào một hàm, biến nó thành các phần tử riêng lẻ.
+ - ```Pattern rest``` dùng để gom các phần tử lại và đóng chúng vào một mảng, ngược lại so với operator spread.
+
+```
+const [a, b, ...others] = [2, 3, 4, 5];
+console.log(a, b, others); // Kết quả: 2, 3, [4, 5]
+```
+
+```
+const orderPizza = (mainIngredient, ...otherIngredients) => {
+  console.log(mainIngredient, otherIngredients); // "mushrooms", ["onion", "olives", "spinach"]
+};
+
+orderPizza("mushrooms", "onion", "olives", "spinach");
+```
+***4. Nullish Coalescing (??)***
+- Nếu toán hạng bên trái của toán tử ```??``` là ```null``` hoặc ```undefined,``` nó ```trả về toán hạng bên phải (giá trị mặc định)```
+- Nếu toán hạng bên trái ```không phải là null hoặc undefined,``` nó ```trả về toán hạng bên trái.```
+- Khác với toán tử ```OR (||)``` thông thường, chỉ trả về giá trị mặc định nếu biến là ```falsy (như 0, false, '', NaN).```
+
+***5. Logical Assignment***
+
+- ```&&=``` (Logical AND Assignment)
+   - Sử dụng: ```x &&= y``` có nghĩa là ```x = x && y.```
+   - Chỉ gán lại giá trị cho ```x nếu nó true``` và ```y khác false``` (```true hoặc null```, ```ndefined```, 0, ```NaN```, hoặc ```""``` sẽ là ```false```).
+   - 
+   ```
+   let x = 5;
+   x &&= 3; // x = 3, vì x là true và y khác false
+   ```
+- ```||=``` (Logical OR Assignment)
+   - Sử dụng: ```x ||= y``` có nghĩa là ```x = x || y```.
+   - Chỉ gán lại giá trị cho ```x nếu nó false và y không phải ```false``` (tức là y không phải ```null```, ```undefined```, 0, ```NaN, hoặc ""```).
+   ```
+   let x = 0;
+   x ||= 3; // x = 3, vì x là false và y không phải false
+
+   ```
+
+- ```??=``` (Logical Nullish Assignment)
+    - Sử dụng: ```x ??= y``` có nghĩa là ```x = x ?? y```.
+    - Chỉ gán lại giá trị cho x nếu nó ```null``` hoặc ```undefined``` và y không phải ```null``` hoặc ```undefined```.
+    ```
+    let x = null;
+    x ??= 3; // x = 3, vì x là null
+    ```
