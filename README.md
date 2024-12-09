@@ -1,5 +1,5 @@
 # How JavaScript Works Behind the Scenes
-## I.The JavaScript Engine and Runtime
+## The JavaScript Engine and Runtime
 ### 1. JavaScript engine hoạt động như thế nào
  - ***JavaScript engine đơn giản là một chương trình máy tính thực thi Code JS từ dạng có thể đọc được của con người thành hướng dẫn mà phần cứng máy tính có thể hiểu và thực thi.***
  - ***Trình duyệt dựa vào v8 Engine (JavaScript engine), còn khi bạn chạy code ở local thì phần cần đến môi trường Node.js***
@@ -69,15 +69,146 @@
    
 ***[Xem thêm video để hiểu rõ hơn cách chúng thực thi](https://www.youtube.com/watch?v=eiC58R16hb8)***
 
-## II.Scope and The Scope Chain
+## Scope and The Scope Chain
 
+***1. Các loại Scope trong JavaScript***
 
+- ***Global Scope:*** Biến khai báo ngoài mọi hàm hoặc block, có thể truy cập từ mọi nơi trong chương trình.
+  
+```
+  var message = "Global message";
 
+function showMessage() {
+  var message = "Local message"; // This "shadows" the global variable
+  console.log(message); // Accessing the local variable => Local message
+}
 
+showMessage();
+console.log(message); // Accessing the global variable
+```
 
+- ***Function Scope:*** Mỗi hàm tạo ra một scope riêng. Các biến khai báo trong hàm chỉ truy cập được trong hàm đó.
 
+```
+  function myFunction() {
+  if (true) {
+    var localVariable = "I'm in block scope";
+    let blockVariable = "I'm also in block scope";
+  }
+  console.log(localVariable); // Accessible
+  console.log(blockVariable); // Error: blockVariable is not defined
+}
+```
 
+- ***Block Scope (từ ES6):*** Các block (cặp ngoặc {} như trong if, for) tạo scope riêng, nhưng chỉ áp dụng cho các biến khai báo bằng let và const.
 
+```
+if (true) {
+  let blockVariable = "I'm in block scope";
+  console.log(blockVariable);
+}
+// Accessing blockVariable here would result in an error
+```
+***2. Scope Chain***
+- Mỗi scope luôn có thể truy cập tất cả các biến từ các ```outer scope``` của nó, nhưng không thể truy cập vào các ```inner scope```.
+Quá trình tìm biến: ```Variable Lookup```
+- Nếu không tìm thấy biến trong scope hiện tại, JavaScript sẽ tìm trong ``scope chain`` (các ```outer scope```).
+- ```Một chiều:``` Scope không thể truy cập biến từ các inner scope hoặc sibling scope.
 
+```
+function testScope() {
+    let outerVar = "Outer Scope";
+
+    if (true) {
+        let innerVar = "Inner Scope";
+        console.log(outerVar); // Có thể truy cập outerVar
+        console.log(innerVar); // Có thể truy cập innerVar
+    }
+
+    console.log(outerVar); // Có thể truy cập outerVar
+    // console.log(innerVar); // Lỗi: innerVar is not defined
+}
+
+testScope();
+
+Giải thích:
+Scope của innerVar:
+
+innerVar được khai báo bằng let trong block {} của if.
+Nó chỉ tồn tại và có thể truy cập trong phạm vi block đó.
+Scope của outerVar:
+
+outerVar thuộc phạm vi toàn bộ hàm testScope.
+Mọi scope bên trong testScope đều có thể truy cập outerVar.
+```
+## Variable Environment: Hoisting and The TDZ
+
+***1. Hoisting***
+- Là hành vi đưa phần khai báo của ***hàm (Function)***, ***biến (let, const, var)*** hoặc ***lớp(class)*** lên đầu phạm vi mà chúng được định nghĩa và gán giá trị.
+- Thực chất: Trình biên dịch JavaScript quét mã để tìm các khai báo biến trước khi thực thi, và các biến được thêm vào Variable Environment Object trong giai đoạn tạo Execution Context.
+
+***Biến (Variable)***
+- Với ```var:``` Chỉ khai báo được hoisted, không phải giá trị. Giá trị mặc định là ```undefined.```
+```
+console.log(x); // Output: undefined
+var x = 5;
+console.log(x); // Output: 5
+```
+
+```
+x = 5;
+console.log(x); // Output: 5
+var x = 5;
+```
+
+- Với let và const: ```let``` và ```const``` được hoisted nhưng không thể truy cập trước dòng khai báo.
+
+```
+console.log(y); // ReferenceError: Cannot access 'y' before initialization
+let y = 10;
+
+console.log(z); // ReferenceError: Cannot access 'z' before initialization
+const z = 15;
+```
+
+  
+***Hàm (Function)***
+- có 2 loại ```function declarations``` và ```function expressions```
+- Các ```function declarations``` được hoisted hoàn chỉnh, nghĩa là bạn có thể sử dụng chúng trước khi khai báo.
+```
+sayHello(); // Output: "Hello!"
+
+function sayHello() {
+    console.log("Hello!");
+}
+```
+- Các ```function expressions``` không hoạt động giống như vậy mà nó tương tự như (let, const, var).
+```
+console.log(multiply(2, 3)); // ReferenceError: Cannot access 'multiply' before initialization
+const multiply = function(a, b) {
+  return a * b;
+};
+```
+
+```
+sayHello(); // Kết quả: undefined is not a function
+
+var sayHello = function() {
+    console.log("Hello, world!");
+};
+```
+
+***Lớp (Class)***
+- Các ```class``` được ```hoisted```, nhưng không thể sử dụng trước khi khai báo.
+
+```
+const obj = new MyClass(); // ReferenceError: Cannot access 'MyClass' before initialization
+
+class MyClass {
+    constructor() {
+        this.name = "Test Class";
+    }
+}
+```
 
 
