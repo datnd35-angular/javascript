@@ -371,3 +371,232 @@ orderPizza("mushrooms", "onion", "olives", "spinach");
     let x = null;
     x ??= 3; // x = 3, vì x là null
     ```
+***6. Set***
+- Được sử dụng để lưu trữ các giá trị duy nhất. Các giá trị trong một ```Set``` không lặp lại và không có chỉ số, ```tương tự như mảng nhưng loại bỏ các giá trị trùng lặp.```
+```
+let numbers = [1, 2, 2, 3, 4, 4];
+let uniqueNumbers = new Set(numbers); // uniqueNumbers sẽ chứa 1, 2, 3, 4
+```
+- ***Lợi ích của Set***
+  - ```Loại bỏ trùng lặp:``` Set tự động loại bỏ các giá trị trùng lặp, giúp bạn dễ dàng kiểm soát và duy trì dữ liệu duy nhất.
+  - ```Hiệu suất:``` Các phương thức của ```Set``` (như ```add, delete, has```) có thời gian phức tạp gần như O(1), tức là rất nhanh chóng.
+  - ```Dễ dàng chuyển đổi sang mảng:``` Bạn có thể dễ dàng chuyển đổi một Set thành một mảng sử dụng Array.from() hoặc ...spread operator.
+
+
+- Tạo 1 custom ```Set```
+```
+function MySet() {
+    this.items = {};  // Dùng một đối tượng để lưu trữ các giá trị
+    this.size = 0;    // Số lượng các giá trị trong `Set`
+
+    // Thêm một giá trị vào `Set`
+    this.add = function(value) {
+        if (!this.has(value)) {
+            this.items[value] = true;  // Đánh dấu giá trị là có trong `Set`
+            this.size++;
+        }
+    };
+
+   // Kiểm tra xem một giá trị có tồn tại trong `Set` hay không
+    this.has = function(value) {
+        return this.items.hasOwnProperty(value);
+    };
+.....
+```
+***7. Map***
+- Khi bạn cần các khóa không phải chuỗi hoặc các khóa có thể lặp lại:
+```
+let map = new Map();
+map.set(1, 'a');
+map.set(1, 'b'); // Cập nhật giá trị của khóa 1
+console.log(map.get(1)); // 'b'
+```
+
+- Khi bạn cần giữ thứ tự:
+```
+let map = new Map();
+map.set('c', 3);
+map.set('a', 1);
+map.set('b', 2);
+
+for (let [key, value] of map) {
+  console.log(key, value);
+}
+// Output:
+// 'c' 3
+// 'a' 1
+// 'b' 2
+```
+- ```Map``` cung cấp các phương thức hữu ích như ```has, get, set, delete, và clear``` giúp dễ dàng thao tác với dữ liệu.
+```
+let map = new Map();
+map.set('apple', 1);
+map.set('banana', 2);
+
+console.log(map.has('apple')); // true
+console.log(map.delete('banana')); // true
+console.log(map.size); // 1
+```
+- Khi bạn muốn sử dụng ```entries``` hoặc ```forEach```
+```
+let map = new Map([
+  ['apple', 1],
+  ['banana', 2],
+]);
+
+map.forEach((value, key) => {
+  console.log(key, value);
+});
+// Output:
+// 'apple' 1
+// 'banana' 2
+```
+- Khi bạn cần làm việc với các cặp ```khóa/giá trị``` phức tạp hoặc các dữ liệu liên kết:
+
+## Lập trình Hướng Đối Tượng (OOP) Với JavaScript 
+
+***1. OOP***
+- OOP cho phép chúng ta mô phỏng các khía cạnh của thế giới thực bằng cách sử dụng các đối tượng có chứa dữ liệu (thuộc tính) và hành vi (phương thức). Nó giúp tổ chức code, làm cho mã trở nên linh hoạt và dễ duy trì hơn.
+
+- Đối tượng: Các đối tượng là những khối mã tự chứa, có thể coi như những ứng dụng nhỏ. Chúng bao gồm dữ liệu và hành vi.
+ ```
+const user = {
+  username: 'john_doe',
+  password: '123456',
+  email: 'john@example.com',
+  login: function() {
+    console.log(`${this.username} has logged in.`);
+  },
+  sendMessage: function(message) {
+    console.log(`${this.username} sent a message: ${message}`);
+  }
+};
+```
+- Lớp : Các ```Class``` đóng vai trò là bản thiết kế để tạo ra các đối tượng. Chúng định nghĩa những gì mà một đối tượng cần chứa và hành vi của nó.
+```
+class User {
+  constructor(username, password, email) {
+    this.username = username;
+    this.password = password;
+    this.email = email;
+  }
+
+  login() {
+    console.log(`${this.username} has logged in.`);
+  }
+
+  sendMessage(message) {
+    console.log(`${this.username} sent a message: ${message}`);
+  }
+}
+
+```
+- Đóng gói: Đóng gói liên quan đến việc giữ một số thuộc tính và phương thức riêng tư bên trong một lớp học, ngăn không cho mã bên ngoài thao tác trực tiếp vào trạng thái bên trong.
+ ```
+class User {
+  constructor(username, password, email) {
+    this.username = username;
+    this.password = password;
+    this.email = email;
+  }
+
+  login() {
+    console.log(`${this.username} has logged in.`);
+  }
+
+  // Method is private, cannot be accessed outside the class
+  #checkSpam(message) {
+    // Logic to check if message is spam
+    return false;
+  }
+}
+```
+- Kế thừa: Kế thừa cho phép một lớp (lớp con) thừa kế các thuộc tính và phương thức từ một lớp khác (lớp cha), thúc đẩy việc tái sử dụng mã.
+ ```
+class Admin extends User {
+  constructor(username, password, email, adminLevel) {
+    super(username, password, email); // Thừa kế các thuộc tính từ lớp cha
+    this.adminLevel = adminLevel;
+  }
+
+  manageSystem() {
+    console.log(`${this.username} manages the system.`);
+  }
+}
+```
+- Đa hình: Đa hình cho phép một lớp con ghi đè phương thức được thừa kế từ lớp cha, cung cấp các triển khai khác nhau cho các đối tượng khác nhau.
+```
+class Author extends User {
+  constructor(username, password, email, books) {
+    super(username, password, email); // Thừa kế các thuộc tính từ lớp cha
+    this.books = books;
+  }
+
+  login() {
+    console.log(`${this.username} logged in as an author.`);
+  }
+}
+```
+***2. Setters và Getters***
+- ```Getters``` dùng để lấy giá trị (như thuộc tính bình thường nhưng có thể bao gồm logic).
+- ```Setters``` dùng để đặt giá trị và thường được sử dụng để ***kiểm tra hoặc xử lý dữ liệu trước khi lưu***.
+
+```
+class Person {
+  constructor(birthYear) {
+    this.birthYear = birthYear;
+  }
+  get age() {
+    return new Date().getFullYear() - this.birthYear;
+  }
+}
+const jessica = new Person(1990);
+console.log(jessica.age); // Output: 34 (năm 2024)
+```
+
+```
+class Person {
+  set fullName(name) {
+    if (name.includes(' ')) {
+      this._fullName = name;
+    } else {
+      console.error('Not a valid full name');
+    }
+  }
+  get fullName() {
+    return this._fullName;
+  }
+}
+const walter = new Person();
+walter.fullName = 'Walter White';
+console.log(walter.fullName); // Output: "Walter White"
+walter.fullName = 'Walter';
+// Output: "Not a valid full name"
+```
+
+***3. Static Methods***
+- Dùng để cung cấp các tiện ích hỗ trợ hoặc xử lý dữ liệu chung cho lớp/hàm tạo mà không cần liên quan đến các instance cụ thể.
+- Không thể truy cập từ instance, chỉ thông qua lớp hoặc hàm tạo.
+```
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+  static hey() {
+    console.log('Hey there! 👋');
+  }
+}
+Person.hey(); // Output: Hey there! 👋
+```
+
+
+
+
+
+
+
+
+
+
+
+
