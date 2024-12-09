@@ -141,7 +141,7 @@ Scope của outerVar:
 outerVar thuộc phạm vi toàn bộ hàm testScope.
 Mọi scope bên trong testScope đều có thể truy cập outerVar.
 ```
-## Variable Environment: Hoisting and The TDZ
+## Variable Environment: Hoisting 
 
 ***1. Hoisting***
 - Là hành vi đưa phần khai báo của ***hàm (Function)***, ***biến (let, const, var)*** hoặc ***lớp(class)*** lên đầu phạm vi mà chúng được định nghĩa và gán giá trị.
