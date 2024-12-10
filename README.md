@@ -295,9 +295,9 @@ new x(1,2,3);
 - ***Primitives***:  ```Number```, ```String```, ```Boolean```, ```Undefined```, ```Null```, ```Symbol```, ```BigInt```
 - ***Objects***: ```Objects```, ```Array```, ```Functions``` 
 
-## Toán tử(Operators) và chuỗi(String) 
+# Toán tử(Operators) và chuỗi(String) 
 
-***1. Destructuring Arrays***
+## Destructuring Arrays
 - tính năng cho phép ***lấy các phần tử từ một mảng và gán chúng trực tiếp vào các biến riêng biệt.*** Thay vì sử dụng cú pháp truyền thống để chỉ ra chỉ số của từng phần tử trong mảng.
 ```
 const [a, b, c, d] = numbers;
@@ -309,7 +309,8 @@ Có thể sử dụng default values để tránh lỗi undefined
 const [first, second = 'default', third = 'default'] = [1, 2]; // third sẽ có giá trị là 'default'
 ```
 
-***2. Destructuring Objects***
+## Destructuring Objects
+
 - ***Tính năng cho phép bạn lấy các thuộc tính từ một đối tượng và gán chúng trực tiếp vào các biến riêng biệt.***
 ```
 const person = {
@@ -323,7 +324,7 @@ const { name, age, location } = person;
 
 const { name, age = 25, job = 'unemployed' } = person;
 ```
-***3. Rest Pattern***
+## Rest Pattern
 - ***Pattern rest trông giống hệt như operator spread. Cả hai đều có cú pháp giống nhau với ba dấu chấm nhưng thực hiện công việc ngược lại.***
  - ```Operator spread``` dùng để mở rộng một mảng hoặc truyền nhiều giá trị vào một hàm, biến nó thành các phần tử riêng lẻ.
  - ```Pattern rest``` dùng để gom các phần tử lại và đóng chúng vào một mảng, ngược lại so với operator spread.
@@ -340,12 +341,12 @@ const orderPizza = (mainIngredient, ...otherIngredients) => {
 
 orderPizza("mushrooms", "onion", "olives", "spinach");
 ```
-***4. Nullish Coalescing (??)***
+## Nullish Coalescing (??)
 - Nếu toán hạng bên trái của toán tử ```??``` là ```null``` hoặc ```undefined,``` nó ```trả về toán hạng bên phải (giá trị mặc định)```
 - Nếu toán hạng bên trái ```không phải là null hoặc undefined,``` nó ```trả về toán hạng bên trái.```
 - Khác với toán tử ```OR (||)``` thông thường, chỉ trả về giá trị mặc định nếu biến là ```falsy (như 0, false, '', NaN).```
 
-***5. Logical Assignment***
+## Logical Assignment
 
 - ```&&=``` (Logical AND Assignment)
    - Sử dụng: ```x &&= y``` có nghĩa là ```x = x && y.```
@@ -371,7 +372,7 @@ orderPizza("mushrooms", "onion", "olives", "spinach");
     let x = null;
     x ??= 3; // x = 3, vì x là null
     ```
-***6. Set***
+## Set
 - Được sử dụng để lưu trữ các giá trị duy nhất. Các giá trị trong một ```Set``` không lặp lại và không có chỉ số, ```tương tự như mảng nhưng loại bỏ các giá trị trùng lặp.```
 ```
 let numbers = [1, 2, 2, 3, 4, 4];
@@ -403,7 +404,7 @@ function MySet() {
     };
 .....
 ```
-***7. Map***
+## Map
 - Khi bạn cần các khóa không phải chuỗi hoặc các khóa có thể lặp lại:
 ```
 let map = new Map();
@@ -453,9 +454,9 @@ map.forEach((value, key) => {
 ```
 - Khi bạn cần làm việc với các cặp ```khóa/giá trị``` phức tạp hoặc các dữ liệu liên kết:
 
-## Lập trình Hướng Đối Tượng (OOP) Với JavaScript 
+# Lập trình Hướng Đối Tượng (OOP) Với JavaScript 
 
-***1. OOP***
+## OOP
 - OOP cho phép chúng ta mô phỏng các khía cạnh của thế giới thực bằng cách sử dụng các đối tượng có chứa dữ liệu (thuộc tính) và hành vi (phương thức). Nó giúp tổ chức code, làm cho mã trở nên linh hoạt và dễ duy trì hơn.
 
 - Đối tượng: Các đối tượng là những khối mã tự chứa, có thể coi như những ứng dụng nhỏ. Chúng bao gồm dữ liệu và hành vi.
@@ -537,7 +538,7 @@ class Author extends User {
   }
 }
 ```
-***2. Setters và Getters***
+## Setters và Getters
 - ```Getters``` dùng để lấy giá trị (như thuộc tính bình thường nhưng có thể bao gồm logic).
 - ```Setters``` dùng để đặt giá trị và thường được sử dụng để ***kiểm tra hoặc xử lý dữ liệu trước khi lưu***.
 
@@ -574,7 +575,7 @@ walter.fullName = 'Walter';
 // Output: "Not a valid full name"
 ```
 
-***3. Static Methods***
+## Static Methods
 - Dùng để cung cấp các tiện ích hỗ trợ hoặc xử lý dữ liệu chung cho lớp/hàm tạo mà không cần liên quan đến các instance cụ thể.
 - Không thể truy cập từ instance, chỉ thông qua lớp hoặc hàm tạo.
 ```
@@ -589,11 +590,173 @@ class Person {
 Person.hey(); // Output: Hey there! 👋
 ```
 
+# Asynchronous JavaScript: Promises, Async/Await
 
+## Callback Hell
+- ```Callback Hell``` là thuật ngữ dùng để chỉ hiện tượng khi một đoạn mã JavaScript chứa quá nhiều callback lồng nhau, khiến mã trở nên khó đọc, khó bảo trì, và dễ gây lỗi.
+- Nó thường xảy ra trong lập trình bất đồng bộ khi các callback được sử dụng liên tiếp để xử lý chuỗi tác vụ phụ thuộc lẫn nhau.
 
+```
+getData((data) => {
+  processData(data, (processedData) => {
+    saveData(processedData, (response) => {
+      console.log('Data saved:', response);
+    });
+  });
+});
+```
+***Cách giải quyết Callback Hell***
+- Sử dụng ```Promises:```
+```
+getData()
+  .then(processData)
+  .then(saveData)
+  .then(response => {
+    console.log('Data saved:', response);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+```
+- Sử dụng ```async/await```:
+```
+async function handleData() {
+  try {
+    const data = await getData();
+    const processedData = await processData(data);
+    const response = await saveData(processedData);
+    console.log('Data saved:', response);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
 
+handleData();
+```
+## Promises
 
+***1. Trạng thái của Promise:***
+- ***Pending***: Đang xử lý, chưa có kết quả.
+- ***Fulfilled***: Hoàn thành thành công, có kết quả.
+- ***Rejected***: Thất bại, có lỗi xảy ra.
+- Một ```Promise``` chỉ được ```settled``` (hoàn tất) một lần và không thay đổi trạng thái sau đó (Một ```Promise``` chỉ có thể chuyển từ trạng thái ```"Pending"``` sang ```"Fulfilled"``` hoặc ```"Rejected"```, và trạng thái này sẽ không thay đổi thêm nữa. Điều này đảm bảo rằng kết quả của một Promise là bất biến sau khi nó được ```settled```.).
 
+***2. chaining promises***
+- ```Chaining promises``` cho phép thực hiện nhiều thao tác bất đồng bộ liên tiếp, trong đó kết quả của bước trước được sử dụng ở bước sau.
+
+```
+function getCountryData(country) {
+    // Bước 1: Fetch dữ liệu quốc gia ban đầu
+    fetch(`https://restcountries.com/v3.1/name/${country}`)
+        .then(response => response.json()) // Xử lý response
+        .then(data => {
+            console.log("Thông tin quốc gia ban đầu:", data[0]);
+            renderCountry(data[0]); // Render quốc gia ban đầu
+
+            // Bước 2: Lấy mã quốc gia lân cận
+            const neighbor = data[0].borders ? data[0].borders[0] : null;
+
+            if (!neighbor) {
+                console.log("Không có quốc gia lân cận.");
+                return;
+            }
+
+            // Fetch dữ liệu quốc gia lân cận
+            return fetch(`https://restcountries.com/v3.1/alpha/${neighbor}`);
+        })
+        .then(response => response.json()) // Xử lý response của quốc gia lân cận
+        .then(data => {
+            console.log("Thông tin quốc gia lân cận:", data[0]);
+            renderCountry(data[0], 'neighbour'); // Render quốc gia lân cận
+        })
+        .catch(error => console.error("Lỗi:", error)); // Xử lý lỗi
+}
+
+function renderCountry(data, className = '') {
+    console.log(`Render quốc gia: ${data.name.common} (${className})`);
+}
+
+// Gọi hàm với quốc gia ban đầu
+getCountryData('germany');
+```
+***3. cách xử lý lỗi***
+
+ - ```Callback``` trong ```then```:
+```
+fetch('url')
+  .then(response => console.log(response), error => alert(error));
+```
+- Sử dụng ```catch```
+```
+fetch('url')
+  .then(response => console.log(response))
+  .catch(error => console.error('Error:', error));
+```
+
+- Sử dụng ```finally```
+  - ```finally``` được gọi bất kể promise được fulfilled hay rejected, hữu ích cho các tác vụ cần thực hiện trong mọi trường hợp (ví dụ: ẩn spinner tải dữ liệu).
+  ```
+  fetch('url')
+  .then(response => console.log(response))
+  .catch(error => console.error(error))
+  .finally(() => console.log('Operation complete.'));
+  ```
+
+***4. Throwing Errors Manually***
+- kỹ thuật thủ công tạo và ném lỗi trong chuỗi ```Promise``` để xử lý các tình huống không mong muốn một cách rõ ràng. Điều này giúp bạn kiểm soát luồng xử lý lỗi tốt hơn và đảm bảo lỗi được bắt kịp bởi phương thức ```catch```
+- Cách hoạt động, Khi bạn throw một lỗi trong then ```handler```:
+  - ```Promise``` hiện tại bị ```reject``` ngay lập tức.
+  - Lỗi này sẽ được chuyển đến catch handler trong chuỗi.
+
+## Async/Await
+
+***1. async***
+- Khi đặt từ khóa ```async``` trước một hàm, hàm đó trở thành hàm bất đồng bộ ```(asynchronous function).```
+- Hàm ```async``` luôn trả về một ```Promise```.
+
+```
+async function fetchData() {
+  return "Hello, Async!";
+}
+
+fetchData().then(data => console.log(data)); // Kết quả: Hello, Async!
+```
+- Ở ví dụ trên, dù ```return``` ```"Hello, Async!"``` trông giống như mã đồng bộ, nhưng nó thực tế là một Promise tự động được giải quyết.
+
+***2. await***
+- ```await``` chỉ có thể được sử dụng bên trong các hàm ```async```.
+- Nó tạm dừng việc thực thi của hàm ```async``` cho đến khi ```Promise``` được giải quyết (hoặc bị từ chối).
+- Giúp bạn xử lý các tác vụ bất đồng bộ như thể chúng là đồng bộ.
+
+```
+async function fetchData() {
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+  const data = await response.json();
+  console.log(data);
+}
+
+fetchData();
+```
+***3. Async/Await***
+- ***Mã dễ đọc hơn:*** Không cần chuỗi .then() và .catch(), mã trông ngắn gọn và dễ hiểu.
+- ***Xử lý lỗi dễ dàng hơn:*** Dùng try...catch để bắt lỗi thay vì .catch()
+  
+```
+async function fetchData() {
+  try {
+    const response = await fetch("https://api.example.com/data");
+    if (!response.ok) {
+      throw new Error(`HTTP Error: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error fetching data:", error.message);
+  }
+}
+
+fetchData();
+```
 
 
 
