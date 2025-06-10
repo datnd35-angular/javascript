@@ -1,3 +1,4 @@
+**[Cách để chạy morden code js trên browser cũ](https://github.com/datnd35-angular/old-browser-technical/blob/main/README.md)**
 # How JavaScript Works Behind the Scenes
 ## The JavaScript Engine and Runtime
 ### 1. JavaScript engine hoạt động như thế nào
