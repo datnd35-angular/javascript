@@ -60,6 +60,29 @@
     
  ![image](https://github.com/user-attachments/assets/c1dca981-09ef-4cfc-aeb0-e652d40ff787)
 
+***Chú thích thêm vì sao, call back và heap cũng thuộc js engine***
+
+```
+JavaScript Engine và JS Runtime không chạy nối tiếp, mà phối hợp đồng thời.
+
+✅ Cách hiểu đúng:
+
+Mỗi khi 1 đoạn code được đẩy vào Call Stack để thực thi, Engine (V8) sẽ xử lý đoạn code đó thông qua các giai đoạn nội bộ:
+
+Parser → AST → Bytecode (Interpreter)
+
+Thực thi Bytecode
+
+Nếu “hot” → gửi cho JIT Compiler để tối ưu
+
+Sau khi thực thi xong 1 hàm → Call Stack pop ra, tiếp tục lặp lại với các hàm khác.
+
+⟹ Nói cách khác:
+
+Engine hoạt động “bên dưới” mọi lần Call Stack thực thi code.
+Mỗi khi có code trong stack, engine lại kích hoạt pipeline Parser → Interpreter → Optimizer để xử lý phần đó.
+```
+
  ***Callback Queue (hay Task Queue):***
  - chứa các callback từ các sự kiện người dùng như ```click, keydown```, và các tác vụ bất đồng bộ như ```setTimeout```.
  - Callback Queue có độ ưu tiên thấp hơn ```Microtask Queue``` nên các ```callback``` trong ```Callback Queue``` được đưa vào sau khi các tác vụ từ ```Microtask Queue``` đã được xử lý xong và ngăn xếp gọi (Call Stack) trống.
