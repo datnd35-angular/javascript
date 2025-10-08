@@ -212,7 +212,21 @@ class MyClass {
 }
 ```
 ## Regular Functions và Arrow Functions
-- ```Arrow Functions``` - một tính năng mới được giới thiệu trong ```ES6```
+
+### Chú ý nhé 
+
+- Functions: có 2 loại ```function declarations``` và ```function expressions```
+- Regular Functions và Arrow Functions : chỉ là một cách gọi để xác định dựa trên cách viết code (cứ khai báo mà có chữ function thì là Regular ngược lại là Arrow)
+- ```Arrow Functions`` Arrow functions thực chất cũng là ```function expressions`` vì cú pháp của nó là như nhau (const sum = (a, b) => a + b; chỉ khác là ko có function trong khai báo)
+
+- Regular Function = Bất kỳ hàm nào được định nghĩa bằng từ khóa function, có this, arguments, và hoạt động truyền thống. Nó trái ngược với Arrow Function, là phiên bản “rút gọn” nhưng không có ngữ cảnh riêng (this, arguments, new).
+- ```function expressions``` nó có thể có (this, arguments, new) hoặc ko, vì còn tuỳ vào cách viết là có chữ ```funcation``` trong khai báo ko.
+
+
+### Nội dung 
+
+
+- ```Arrow Functions``` - một tính năng mới được giới thiệu trong ```ES6 - 2015```
 - Nếu bạn muốn viết code ngắn gọn hoặc làm việc với các phương thức xử lý mảng, thì ```Arrow functions``` sẽ là lựa chọn tốt hơn.
 
 ***1. Syntax***
